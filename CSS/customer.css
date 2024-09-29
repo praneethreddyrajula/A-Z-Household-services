@@ -1,0 +1,28 @@
+
+.title {
+    text-align: center;
+}
+
+.email, .Password, .FullName, .Address, .Pincode{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.register-button {
+    display: flex;
+    background-color: #28a745; /* Green background color */
+    color: white; /* White text color */
+    border: none; /* Remove default borders */
+    padding: 15px 30px; /* Add some padding */
+    font-size: 18px; /* Increase font size */
+    cursor: pointer; /* Change cursor to pointer */
+    border-radius: 5px; /* Optional: Rounded corners */
+    align-items: center;
+    justify-content: center;
+}
+
+.register-button:hover{
+    background-color: #218838; /* Slightly darker green on hover */
+}
