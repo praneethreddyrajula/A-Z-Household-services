@@ -1,0 +1,18 @@
+.title {
+    text-align: center;
+}
+
+.Registered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.Password {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
