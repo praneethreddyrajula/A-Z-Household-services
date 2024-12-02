@@ -1,19 +1,28 @@
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.types import String,Integer,Text,DateTime
-from sqlalchemy import Column
-from sqlalchemy import engine
-Base = declarative_base()
+# Orm
+# Schema of the db
 
-class Users(Base):
-    __tablename__ = 'users'
+from flask_sqlalchemy import SQLAlchemy
 
-    id = Column(Integer,primary_key=True,autoincrement=True)
-    email = Column(String(255),unique=True, nullable=False)
-    password = Column(Text,nullable=False)
-    fullname = Column(String(255), nullable=False)
-    serviceName = Column(String(255))
-    experience = Column(Integer)
-    address = Column(Text)
-    pinCode = Column(Integer)
+db = SQLAlchemy()
 
-Base.metadata.create_all(engine)
+class Professional(db.Model):
+    ID = db.Column(db.Integer,primary_key=True,autoincrement=True)
+    EMAIL = db.Column(db.String(255),unique=True, nullable=False)
+    PASSWORD = db.Column(db.Text,nullable=False)
+    FULLNAME = db.Column(db.String(255), nullable=False)
+    SERVICENAME = db.Column(db.String(255))
+    EXPERIENCE = db.Column(db.Integer)
+    ADDRESS = db.Column(db.Text)
+    OINCODE = db.Column(db.Integer)
+    ROOTUSER = db.Column(db.Boolean, default=False)
+
+class Customers(db.Model):
+    ID = db.Column(db.Integer,primary_key=True,autoincrement=True)
+    EMAIL = db.Column(db.String(255),unique=True, nullable=False)
+    PASSWORD = db.Column(db.Text,nullable=False)
+    FULLNAME = db.Column(db.String(255), nullable=False)
+    ADDRESS = db.Column(db.String(255))
+    CITY = db.Column(db.String(255))
+    STATE = db.Column(db.String(255))
+    PINCODE = db.Column(db.Integer)
+    ROOTUSER = db.Column(db.Boolean, default=False)
