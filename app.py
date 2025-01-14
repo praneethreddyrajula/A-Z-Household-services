@@ -1,7 +1,6 @@
 from flask import Flask,render_template,request,redirect,url_for,flash
 from models import db,Professional,Customers
 from sqlalchemy import select,and_
-
 app = Flask(__name__)
 app.secret_key = "super secret key"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydb.sqlite3'
@@ -23,15 +22,14 @@ def home():
         userName = request.form.get('email')
         passWord = request.form.get('password')
         As = request.form.get('inputState')
-        if As == 'Customer':
-            query = select(Customers).where(and_(Customers.EMAIL==userName,Customers.PASSWORD == passWord)) 
-        else:
-            query = select(Professional).where(and_(Professional.EMAIL==userName,Professional.PASSWORD == passWord))
-        # mary = Customers.query.filter(db.and_(Customers.EMAIL==userName,Customers.PASSWORD == passWord)).all()
-        mary = db.session.execute(query)
-        print(query)
-        print(mary)
-        if mary is not None :
+        # if As == 'Customer':
+        #     query = select(Customers).where(and_(Customers.EMAIL==userName,Customers.PASSWORD == passWord)) 
+        # else:
+        #     query = select(Professional).where(and_(Professional.EMAIL==userName,Professional.PASSWORD == passWord))
+        mary = Customers.query.filter(db.and_(Customers.EMAIL==userName,Customers.PASSWORD == passWord)).all()
+        # print(query)
+        print(len(mary))
+        if len(mary)>0 :
             return render_template('successful.html',user=userName,c_p=As)
         return render_template('home.html')
     else:
@@ -49,11 +47,15 @@ def Csignup():
         pincode = request.form.get("inputZip")
         print(email,password,fullName,address,city,state,pincode)
         
-        db.session.add(Customers(EMAIL=email,PASSWORD=password,FULLNAME=fullName,ADDRESS=address,CITY=city,STATE=state,PINCODE=pincode))
-        db.session.commit()
-        flash('Record was successfully added')
-        return """<h1>Registration successful</h1>
-                  <a href="/">Click here to Login</a>"""
+        if email != '' and password != '' and fullName != '' and address != '' and state!='' and pincode != None:
+            db.session.add(Customers(EMAIL=email,PASSWORD=password,FULLNAME=fullName,ADDRESS=address,CITY=city,STATE=state,PINCODE=pincode))
+            db.session.commit()
+            db.session.close()
+            flash('Record was successfully added')
+            return """<h1>Registration successful</h1>
+                    <a href="/">Click here to Login</a>"""
+        return """<a>Please fill all the fields </a>
+                    <a href='/customerSignup'>Click here to go back</a>"""
     else:
         return render_template('customerSignup.html')
 
@@ -65,6 +67,10 @@ def Psignup():
 @app.route('/signin')
 def signin():
     return 'Login Success'
+
+# @app.route('/account')
+# def account(User,Cp):
+#     return render_template('successful.html',user=User,c_p=Cp)
 
 
 if __name__ == "__main__":

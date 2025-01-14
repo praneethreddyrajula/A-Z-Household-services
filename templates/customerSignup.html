@@ -10,47 +10,47 @@
     <body>
         <h1>Customer Signup</h1>
         <form class="row g-3" method="post">
-            <div class="col-md-6">
+            <div class="col-md-5">
               <label for="inputEmail" class="form-label">Email</label>
-              <input type="email" class="form-control" id="inputEmail" name="inputEmail">
+              <input type="email" class="form-control" id="inputEmail" name="inputEmail" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
               <label for="inputPassword" class="form-label">Password</label>
-              <input type="password" id="inputPassword" class="form-control" aria-describedby="passwordHelpInline" name="inputPassword">
+              <input type="password" id="inputPassword" class="form-control" aria-describedby="passwordHelpInline" name="inputPassword" required>
               <div class="col-auto">
                 <span id="passwordHelpInline" class="form-text">
                   Must be 8-20 characters long.
                 </span>
               </div>
             </div>
-            <div class="col-12">
+            <div class="col-5">
               <label for="fullName" class="form-label">FullName</label>
-              <input type="text" class="form-control" id="fullName" name="fullName">
+              <input type="text" class="form-control" id="fullName" name="fullName" required>
             </div>
-            <div class="col-12">
+            <div class="col-5">
               <label for="inputAddress" class="form-label">Address</label>
-              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St, Apartment, studio, or floor" name="inputAddress">
+              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St, Apartment, studio, or floor" name="inputAddress" required>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="inputCity" class="form-label">City</label>
-              <input type="text" class="form-control" id="inputCity" name="inputCity">
+              <input type="text" class="form-control" id="inputCity" name="inputCity" required>
             </div>
             <div class="col-md-4">
               <label for="inputState" class="form-label">State</label>
-              <select id="inputState" class="form-select" name="inputState">
-                <option selected>AP</option>
+              <select id="inputState" class="form-select" name="inputState" required>
+                <option>AP</option>
                 <option>TS</option>
                 <option>TN</option>
                 <option>KA</option>
               </select>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
               <label for="inputZip" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="inputZip" name="inputZip">
+              <input type="text" class="form-control" id="inputZip" name="inputZip" required>
             </div>
             <div class="col-12">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <input class="form-check-input" type="checkbox" id="gridCheck" required>
                 <label class="form-check-label" for="gridCheck">
                   Check me out
                 </label>
@@ -61,7 +61,10 @@
             </div>
           </form>
           <br>
-          <a class="btn btn-primary btn-lg" href="/" role="button">Link</a>
+          <div class="col-md-12">
+            <a class="btn btn-primary btn-lg" href="/" role="button">Home</a>
+          </div>
+          
     </body>
   </html>
 

@@ -27,7 +27,7 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="nav-link" href="/professionalSignup">Professional</a></li>
-                  <li><a class="nav-link" href="/customerSignup">New</a></li>
+                  <li><a class="nav-link" href="/customerSignup">Customer</a></li>
                 </ul>
               </li>
               <li class="nav-item">
@@ -43,35 +43,61 @@
       </nav>
       <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
       <form action="/" method="post">
-        <div class="row g-3 align-items-center">
-            <div class="col-auto">
+        <table>
+          <tr>
+            <td><div class="col-auto">
               <label for="InputEmail" class="col-form-label" >Email</label>
             </div>
-            <div class="col-auto">
-              <input type="email" id="InputEmail" class="form-control" aria-describedby="passwordHelpInline" name="email">
+          </td>
+            <td><div class="col-auto">
+              <input type="email" class="form-control" id="InputEmail" name="email" aria-describedby="passwordHelpInline" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
             </div>
+          </td>
+          </tr>
+        <tr>
+          <td><div class="col-auto">
+            <label for="inputPassword6" class="col-form-label" >Password</label>
           </div>
-        <div class="row g-3 align-items-center">
-            <div class="col-auto">
-              <label for="inputPassword6" class="col-form-label" >Password</label>
-            </div>
-            <div class="col-auto">
-              <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" name="password">
-            </div>
-            <div class="col-auto">
-              <span id="passwordHelpInline" class="form-text">
-                Must be 8-20 characters long.
-              </span>
-            </div>
-            <div class="col-md-4">
-              <label for="inputState" class="form-label">Login As</label>
-              <select id="inputState" class="form-select" name="inputState">
-                <option selected>Choose</option>
-                <option>Customer</option>
-                <option>Professional</option>
-              </select>
-            </div>  
+        </td>
+        <td>
+          <div class="col-auto">
+            <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" name="password" required>
           </div>
+          <div>
+            <span id="passwordHelpInline" class="form-text">
+              Must be 8-20 characters long.
+            </span>
+          </div>
+        </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="inputState" class="form-label">Login As</label>
+          </td>
+          <td>
+            <select id="inputState" class="form-select" name="inputState">
+              <option selected></option>
+              <option>Customer</option>
+              <option>Professional</option>
+            </select>
+          </td>
+        </tr>
+        </table>
+       
+            <!-- <div class="dropdown" class="col-md-4">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Login As
+              </button>
+              
+              <option>Customer</option>
+              <option>Professional</option>
+              <ul class="dropdown-menu">
+                <li><option>CustomerT</option></li>
+                <li><a class="dropdown-item" href="#">Customer</a></li>
+                <li><a class="dropdown-item" href="#">Professional</a></li>
+              </ul>
+            </div> -->
+          <!-- </div> -->
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
