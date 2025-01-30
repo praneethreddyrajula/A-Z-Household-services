@@ -14,7 +14,7 @@
     
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Welcome to {{ c_p }}</a>
+          <a class="navbar-brand" href="#">Welcome {{ c_p }}</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -43,5 +43,25 @@
       <a>Welcome {{ user }}</a><br>
     {% endif %}
     <a href="/">Click here to Login</a>
+
+    <h3>Service History</h3>
+    <table>
+        <tr>
+            <th>Service ID</th>
+            <th>Service Name</th>
+            <th>Professional Name</th>
+            <th>Phone No</th>
+            <th>Statust</th>
+        </tr>
+        {% for service in services %}
+            <tr>
+                <td>{{ service[0] }}</td>
+                <td>{{ service[1] }}</td>
+                <td>{{ service[2] }}</td>
+                <td>{{ service[3] }}</td>
+                <td>{{ service[4] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
