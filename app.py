@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,url_for,flash
+from flask import Flask,render_template,request,redirect,url_for,flash, session
 # from models import db,Professional,Customers
 # from sqlalchemy import select,and_
 import sqlite3
@@ -6,15 +6,6 @@ app = Flask(__name__)
 app.secret_key = "super secret key"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydb.sqlite3'
 
-connection = sqlite3.connect('AZHS.db', check_same_thread=False)
-
-# db.init_app(app) # connection between flask and sqlalchemy
-
-################
-# To create all the tables defined in the models
-# app.app_context().push()
-# db.create_all() #create database or update its schema
-#####################
 
 with sqlite3.connect('AZHS.db', check_same_thread=False) as conn:
     cursor = conn.cursor()
@@ -23,12 +14,10 @@ with sqlite3.connect('AZHS.db', check_same_thread=False) as conn:
         if request.method == 'POST':
             userName = request.form.get('email')
             passWord = request.form.get('password')
+            user = request.form.get('inputState')
             userDetails = cursor.execute(f"SELECT * FROM Users WHERE EMAIL='{userName}' AND PASSWORD='{passWord}'").fetchall()
-            print(type(userDetails))
-            print(userDetails[0])
-            if userDetails is not None and userDetails[0][5] == 'Customer' or userDetails[0][5] == 'Professional':
-                return render_template('successful.html',user=userName,c_p=userDetails[0][3])
-            return render_template('home.html')
+            if userDetails and userDetails[0][5] == user:
+                return render_template('dashboard.html',user=userName,c_p=userDetails[0][3])
         return render_template('home.html')
 
     @app.route('/customerSignup', methods=['GET','POST'])
@@ -87,10 +76,11 @@ with sqlite3.connect('AZHS.db', check_same_thread=False) as conn:
         return render_template('professionalSignup.html')
 
 
-    @app.route('/signin')
-    def signin():
-        return 'Login Success'
 
+    @app.route('/logout')
+    def logout():
+        session.pop('user_id', None)
+        return redirect(url_for('home'))
 # @app.route('/account')
 # def account(User,Cp):
 #     return render_template('successful.html',user=User,c_p=Cp)
